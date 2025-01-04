@@ -64,6 +64,7 @@
             btnInscrever.TabIndex = 4;
             btnInscrever.Text = "Inscrever Participante";
             btnInscrever.UseVisualStyleBackColor = true;
+            btnInscrever.Click += btnInscrever_Click;
             // 
             // btnRemover
             // 

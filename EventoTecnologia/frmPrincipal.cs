@@ -47,7 +47,7 @@ namespace EventoTecnologia
 
             // Para que o formulário receba a tecla pressionad
             KeyPreview = true;
-           
+
         }
 
         private void GetDados(Evento ev)
@@ -64,6 +64,13 @@ namespace EventoTecnologia
             // Permite vincular a lista de participantes na DataGridView
             // Outra alternativa era criar diretamente a BindingList na classe Evento
             dgvEventos.DataSource = new BindingList<Participante>(ev.ListaParticipantes);
+        }
+
+        private void btnInscrever_Click(object sender, EventArgs e)
+        {
+            Convidado form = new Convidado();
+            form.ShowDialog();
+            //EventoTec.InscreverParticipante(new Participante(txt_Nome.Text, Convert.ToInt32(dudIdadePart.Text), txtEmail.Text));
         }
     }
 }
