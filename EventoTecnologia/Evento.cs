@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,10 +29,10 @@ namespace EventoTecnologia
         }
 
         // Criação da lista de participantes na classe Evento
-        public List<Participante> ListaParticipantes { get; private set; }
+        public BindingList<Participante> ListaParticipantes { get; private set; }
 
         
-        public Evento(string _nome, DateTime _data, int _capacidadeMax, List<Participante> _participantesIniciais)
+        public Evento(string _nome, DateTime _data, int _capacidadeMax, BindingList<Participante> _participantesIniciais)
         {
             Nome = _nome;
             Data = _data;
@@ -39,10 +40,10 @@ namespace EventoTecnologia
             if (_participantesIniciais.Count<= CapacidadeMax)
                 ListaParticipantes = _participantesIniciais;
             else
-                ListaParticipantes = new List<Participante>();
+                ListaParticipantes = new BindingList<Participante>();
         }
 
-        public Evento(string _nome, DateTime _data, int _capacidadeMax): this(_nome, _data, _capacidadeMax, new List<Participante>())
+        public Evento(string _nome, DateTime _data, int _capacidadeMax): this(_nome, _data, _capacidadeMax, new BindingList<Participante>())
         {
             
         }

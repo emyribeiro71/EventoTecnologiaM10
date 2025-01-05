@@ -70,7 +70,21 @@ namespace EventoTecnologia
         {
             Convidado form = new Convidado();
             form.ShowDialog();
-            //EventoTec.InscreverParticipante(new Participante(txt_Nome.Text, Convert.ToInt32(dudIdadePart.Text), txtEmail.Text));
+        }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            if (dgvEventos.SelectedRows.Count > 0)
+            {
+                Participante p = (Participante)dgvEventos.SelectedRows[0].DataBoundItem;
+                EventoTec.ListaParticipantes.Remove(p);
+                GetDados(EventoTec);
+            }
+        }
+        public void AtualizarDataGridView()
+        {
+            dgvEventos.DataSource = null; 
+            dgvEventos.DataSource = EventoTec.ListaParticipantes; 
         }
     }
 }

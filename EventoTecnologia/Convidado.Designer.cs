@@ -36,6 +36,8 @@
             txb_Nome = new TextBox();
             txb_Email = new TextBox();
             txb_Idade = new TextBox();
+            btn_ok = new Button();
+            btn_cancelar = new Button();
             SuspendLayout();
             // 
             // lbl_Nome
@@ -103,11 +105,33 @@
             txb_Idade.Size = new Size(100, 23);
             txb_Idade.TabIndex = 8;
             // 
+            // btn_ok
+            // 
+            btn_ok.Location = new Point(477, 364);
+            btn_ok.Name = "btn_ok";
+            btn_ok.Size = new Size(75, 23);
+            btn_ok.TabIndex = 9;
+            btn_ok.Text = "OK";
+            btn_ok.UseVisualStyleBackColor = true;
+            btn_ok.Click += btn_ok_Click;
+            // 
+            // btn_cancelar
+            // 
+            btn_cancelar.Location = new Point(396, 364);
+            btn_cancelar.Name = "btn_cancelar";
+            btn_cancelar.Size = new Size(75, 23);
+            btn_cancelar.TabIndex = 10;
+            btn_cancelar.Text = "Cancelar";
+            btn_cancelar.UseVisualStyleBackColor = true;
+            btn_cancelar.Click += btn_cancelar_Click;
+            // 
             // Convidado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(587, 399);
+            Controls.Add(btn_cancelar);
+            Controls.Add(btn_ok);
             Controls.Add(txb_Idade);
             Controls.Add(txb_Email);
             Controls.Add(txb_Nome);
@@ -132,5 +156,7 @@
         private TextBox txb_Nome;
         private TextBox txb_Email;
         private TextBox txb_Idade;
+        private Button btn_ok;
+        private Button btn_cancelar;
     }
 }

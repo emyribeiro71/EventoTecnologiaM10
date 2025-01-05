@@ -74,6 +74,7 @@
             btnRemover.TabIndex = 3;
             btnRemover.Text = "Remover Inscrição";
             btnRemover.UseVisualStyleBackColor = true;
+            btnRemover.Click += btnRemover_Click;
             // 
             // dgvEventos
             // 
