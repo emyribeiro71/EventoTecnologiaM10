@@ -11,6 +11,9 @@ namespace EventoTecnologia
         {
             InitializeComponent();
             EventoTec = Dados.EventoAtual;
+
+            // Vincula o evento CheckedChanged
+            ckbEvento.CheckedChanged += ckbEvento_CheckedChanged;
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -48,6 +51,11 @@ namespace EventoTecnologia
             // Para que o formulário receba a tecla pressionad
             KeyPreview = true;
 
+
+            // Inicializa os campos como desativados
+            txtNome.Enabled = false;
+            dtpData.Enabled = false;
+            dudNumMax.Enabled = false;
         }
 
         private void GetDados(Evento ev)
@@ -58,18 +66,29 @@ namespace EventoTecnologia
             txtNome.Text = ev.Nome;
             dtpData.Value = ev.Data.Date;
             dudNumMax.Text = ev.CapacidadeMax.ToString();
+            // Desmarcar a CheckBox e desativar os campos
+            ckbEvento.Checked = false;
+            ckbEvento_CheckedChanged(null, null); // Chama o método para desativar campos
 
-            // exibição da listagem de participantes na DataGridView
+            /// Ordenar a lista de participantes por ordem alfabética
+            var participantesOrdenados = ev.ListaParticipantes.OrderBy(p => p.Nome).ToList();
 
-            // Permite vincular a lista de participantes na DataGridView
-            // Outra alternativa era criar diretamente a BindingList na classe Evento
-            dgvEventos.DataSource = new BindingList<Participante>(ev.ListaParticipantes);
+            // Exibir a listagem de participantes na DataGridView
+            dgvEventos.DataSource = new BindingList<Participante>(participantesOrdenados);
         }
 
         private void btnInscrever_Click(object sender, EventArgs e)
         {
             Convidado form = new Convidado();
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK) // Verifica se a inscrição foi bem-sucedida
+            {
+                GetDados(EventoTec); // Atualiza a lista de participantes
+                MessageBox.Show("Inscrição realizada com sucesso!", "Inscrição", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Inscrição Cancelada", "Inscrição", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnRemover_Click(object sender, EventArgs e)
@@ -78,13 +97,22 @@ namespace EventoTecnologia
             {
                 Participante p = (Participante)dgvEventos.SelectedRows[0].DataBoundItem;
                 EventoTec.ListaParticipantes.Remove(p);
-                GetDados(EventoTec);
+                GetDados(EventoTec); // Atualiza a DataGridView após remoção
             }
         }
         public void AtualizarDataGridView()
         {
-            dgvEventos.DataSource = null; 
-            dgvEventos.DataSource = EventoTec.ListaParticipantes; 
+            dgvEventos.DataSource = null;
+            dgvEventos.DataSource = new BindingList<Participante>(EventoTec.ListaParticipantes); 
+
+        }
+
+        private void ckbEvento_CheckedChanged(object sender, EventArgs e)
+        {
+            // Ativa ou desativa os campos de edição com base na seleção da CheckBox
+            txtNome.Enabled = ckbEvento.Checked;
+            dtpData.Enabled = ckbEvento.Checked;
+            dudNumMax.Enabled = ckbEvento.Checked;
         }
     }
 }

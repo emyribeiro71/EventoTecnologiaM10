@@ -18,22 +18,29 @@ namespace EventoTecnologia
         {
             InitializeComponent();
             EventoTec = Dados.EventoAtual;
+
+            // Define os botões de aceitação e cancelamento
+            AcceptButton = btn_ok;
+            CancelButton = btn_cancelar;
+            btn_cancelar.CausesValidation = false;
         }
 
         private void btn_ok_Click(object sender, EventArgs e)
         {
             int.TryParse(txb_Idade.Text, out int idade);
-            EventoTec.InscreverParticipante(new Participante(txb_Nome.Text, idade, txb_Email.Text));
-            MessageBox.Show("Inscrição realizada com sucesso!", "Inscrição", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+            EventoTec.InscreverParticipante(new Participante(txb_Nome.Text, idade, txb_Email.Text)); // Inscreve o participante no evento
+
+            this.DialogResult = DialogResult.OK; // Retorna resultado OK
             this.Close();
 
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Inscrição Cancelada", "Inscrição", MessageBoxButtons.OK, MessageBoxIcon.Information);
+           //fecha a janela
             this.Close();
         }
+
+       
     }
 }
