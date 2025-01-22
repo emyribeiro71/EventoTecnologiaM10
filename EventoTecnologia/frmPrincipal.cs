@@ -96,14 +96,25 @@ namespace EventoTecnologia
             if (dgvEventos.SelectedRows.Count > 0)
             {
                 Participante p = (Participante)dgvEventos.SelectedRows[0].DataBoundItem;
-                EventoTec.ListaParticipantes.Remove(p);
+                string msg = "Remover o participante " + p.Nome + "?";
+                DialogResult res = MessageBox.Show(msg, "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);//verifica se quer mesmo eliminar o participante
+                if (res == DialogResult.Yes)
+                    EventoTec.ListaParticipantes.Remove(p); // Remove o participante da lista
                 GetDados(EventoTec); // Atualiza a DataGridView após remoção
+
             }
+            if (dgvEventos.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Selecione um participante para remover", "Remover", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (dgvEventos.Rows.Count > 0 && dgvEventos.SelectedRows.Count == 0)
+                dgvEventos.Rows[dgvEventos.Rows.Count - 1].Selected = true;
+
         }
         public void AtualizarDataGridView()
         {
             dgvEventos.DataSource = null;
-            dgvEventos.DataSource = new BindingList<Participante>(EventoTec.ListaParticipantes); 
+            dgvEventos.DataSource = new BindingList<Participante>(EventoTec.ListaParticipantes);
 
         }
 
@@ -113,6 +124,14 @@ namespace EventoTecnologia
             txtNome.Enabled = ckbEvento.Checked;
             dtpData.Enabled = ckbEvento.Checked;
             dudNumMax.Enabled = ckbEvento.Checked;
+        }
+
+        private void frmPrincipal_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Delete)
+            {
+                btnRemover.PerformClick();
+            }
         }
     }
 }

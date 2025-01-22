@@ -43,7 +43,7 @@
             // lbl_Nome
             // 
             lbl_Nome.AutoSize = true;
-            lbl_Nome.Location = new Point(131, 87);
+            lbl_Nome.Location = new Point(40, 39);
             lbl_Nome.Name = "lbl_Nome";
             lbl_Nome.Size = new Size(46, 15);
             lbl_Nome.TabIndex = 0;
@@ -52,7 +52,7 @@
             // lbl_Idade
             // 
             lbl_Idade.AutoSize = true;
-            lbl_Idade.Location = new Point(331, 87);
+            lbl_Idade.Location = new Point(40, 74);
             lbl_Idade.Name = "lbl_Idade";
             lbl_Idade.Size = new Size(42, 15);
             lbl_Idade.TabIndex = 1;
@@ -61,7 +61,7 @@
             // lbl_Email
             // 
             lbl_Email.AutoSize = true;
-            lbl_Email.Location = new Point(188, 133);
+            lbl_Email.Location = new Point(40, 104);
             lbl_Email.Name = "lbl_Email";
             lbl_Email.Size = new Size(39, 15);
             lbl_Email.TabIndex = 2;
@@ -70,7 +70,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(242, 30);
+            label4.Location = new Point(89, 9);
             label4.Name = "label4";
             label4.Size = new Size(102, 15);
             label4.TabIndex = 3;
@@ -86,28 +86,28 @@
             // 
             // txb_Nome
             // 
-            txb_Nome.Location = new Point(188, 84);
+            txb_Nome.Location = new Point(92, 36);
             txb_Nome.Name = "txb_Nome";
             txb_Nome.Size = new Size(100, 23);
             txb_Nome.TabIndex = 6;
             // 
             // txb_Email
             // 
-            txb_Email.Location = new Point(233, 130);
+            txb_Email.Location = new Point(92, 101);
             txb_Email.Name = "txb_Email";
             txb_Email.Size = new Size(100, 23);
             txb_Email.TabIndex = 7;
             // 
             // txb_Idade
             // 
-            txb_Idade.Location = new Point(379, 84);
+            txb_Idade.Location = new Point(92, 66);
             txb_Idade.Name = "txb_Idade";
             txb_Idade.Size = new Size(100, 23);
             txb_Idade.TabIndex = 8;
             // 
             // btn_ok
             // 
-            btn_ok.Location = new Point(477, 364);
+            btn_ok.Location = new Point(57, 160);
             btn_ok.Name = "btn_ok";
             btn_ok.Size = new Size(75, 23);
             btn_ok.TabIndex = 9;
@@ -117,7 +117,7 @@
             // 
             // btn_cancelar
             // 
-            btn_cancelar.Location = new Point(396, 364);
+            btn_cancelar.Location = new Point(138, 160);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(75, 23);
             btn_cancelar.TabIndex = 10;
@@ -129,7 +129,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(587, 399);
+            ClientSize = new Size(265, 212);
             Controls.Add(btn_cancelar);
             Controls.Add(btn_ok);
             Controls.Add(txb_Idade);

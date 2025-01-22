@@ -178,6 +178,7 @@
             Name = "frmPrincipal";
             Text = "Gestão de Inscrições para Evento de Tecnologia";
             Load += frmPrincipal_Load;
+            KeyDown += frmPrincipal_KeyDown;
             grpEventos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvEventos).EndInit();
             ResumeLayout(false);
