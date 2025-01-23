@@ -70,11 +70,17 @@ namespace EventoTecnologia
             ckbEvento.Checked = false;
             ckbEvento_CheckedChanged(null, null); // Chama o método para desativar campos
 
-            /// Ordenar a lista de participantes por ordem alfabética
-            var participantesOrdenados = ev.ListaParticipantes.OrderBy(p => p.Nome).ToList();
+            // exibição da listagem de participantes na DataGridView
+            // Permite vincular a lista de participantes na DataGridView
+            // Outra alternativa era criar diretamente a BindingList na classe Evento
+            dgvEventos.DataSource = new BindingList<Participante>(ev.ListaParticipantes);
+
+
+            // Ordenar a lista de participantes por ordem alfabética
+            //var participantesOrdenados = ev.ListaParticipantes.OrderBy(p => p.Nome).ToList();
 
             // Exibir a listagem de participantes na DataGridView
-            dgvEventos.DataSource = new BindingList<Participante>(participantesOrdenados);
+            //dgvEventos.DataSource = new BindingList<Participante>(participantesOrdenados);
         }
 
         private void btnInscrever_Click(object sender, EventArgs e)

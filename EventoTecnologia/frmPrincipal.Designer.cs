@@ -78,6 +78,7 @@
             // 
             // dgvEventos
             // 
+            dgvEventos.AllowUserToOrderColumns = true;
             dgvEventos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEventos.Location = new Point(22, 29);
             dgvEventos.Name = "dgvEventos";
