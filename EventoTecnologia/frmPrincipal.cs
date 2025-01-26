@@ -111,7 +111,7 @@ namespace EventoTecnologia
             }
             if (dgvEventos.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Selecione um participante para remover", "Remover", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Selecione um participante para remover...", "Remover", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             if (dgvEventos.Rows.Count > 0 && dgvEventos.SelectedRows.Count == 0)
                 dgvEventos.Rows[dgvEventos.Rows.Count - 1].Selected = true;
