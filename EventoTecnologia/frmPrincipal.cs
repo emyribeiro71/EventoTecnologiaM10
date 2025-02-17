@@ -5,22 +5,28 @@ namespace EventoTecnologia
 {
     public partial class frmPrincipal : Form
     {
+        // Propriedade que armazena o evento atual
         public Evento EventoTec { get; private set; }
 
+        // Construtor da classe frmPrincipal. Inicializa os componentes
         public frmPrincipal()
         {
             InitializeComponent();
+            // Inicializa o EventoTec com o evento atual obtido de Dados
             EventoTec = Dados.EventoAtual;
 
-            // Vincula o evento CheckedChanged
+            // Vincula o evento CheckedChanged da cknEvento ao método ckbEvento_CheckedChanged
             ckbEvento.CheckedChanged += ckbEvento_CheckedChanged;
         }
 
+        // Evento de clique no botão Sair.
         private void btnSair_Click(object sender, EventArgs e)
         {
             // Sair da aplicação
             Application.Exit();
         }
+
+        // Evento de carregamento do formulário. Inicializa configurações e exibe os dados do evento.
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
@@ -40,15 +46,17 @@ namespace EventoTecnologia
 
             // Formatar os dados na DataGridView
             dgvEventos.Columns["Nome"].Width = 220;
+
             // Alterar a cor de fundo da coluna
             dgvEventos.Columns["Nome"].DefaultCellStyle.BackColor = Color.LightYellow;
+
             //dgvEventos.Columns["Nome"].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold);
             dgvEventos.Columns["Idade"].Width = 56;
             dgvEventos.Columns["Email"].HeaderText = "E-mail";
             dgvEventos.Columns["Email"].Width = 180;
 
 
-            // Para que o formulário receba a tecla pressionad
+            // Para que o formulário receba a tecla pressionada
             KeyPreview = true;
 
 
@@ -58,6 +66,7 @@ namespace EventoTecnologia
             dudNumMax.Enabled = false;
         }
 
+        // Método que carrega os dados do evento na interface
         private void GetDados(Evento ev)
         {
             EventoTec = ev;
@@ -83,8 +92,10 @@ namespace EventoTecnologia
             //dgvEventos.DataSource = new BindingList<Participante>(participantesOrdenados);
         }
 
+        
         private void btnInscrever_Click(object sender, EventArgs e)
         {
+            // Abre o formulário de inscrição
             Convidado form = new Convidado();
             if (form.ShowDialog() == DialogResult.OK) // Verifica se a inscrição foi bem-sucedida
             {
@@ -97,8 +108,10 @@ namespace EventoTecnologia
             }
         }
 
+        
         private void btnRemover_Click(object sender, EventArgs e)
         {
+            // Verifica se há uma linha selecionada na DataGridView
             if (dgvEventos.SelectedRows.Count > 0)
             {
                 Participante p = (Participante)dgvEventos.SelectedRows[0].DataBoundItem;
@@ -111,19 +124,26 @@ namespace EventoTecnologia
             }
             if (dgvEventos.SelectedRows.Count == 0)
             {
+                // Exibe uma mensagem caso nenhum participante tenha sido selecionado
                 MessageBox.Show("Selecione um participante para remover...", "Remover", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            // Se não houver linha selecionada, seleciona a última linha automaticamente
             if (dgvEventos.Rows.Count > 0 && dgvEventos.SelectedRows.Count == 0)
                 dgvEventos.Rows[dgvEventos.Rows.Count - 1].Selected = true;
 
         }
+        
         public void AtualizarDataGridView()
         {
+            // Remove os dados da DataGridView
             dgvEventos.DataSource = null;
+
+            // A fonte de dados muda para outra BindingList baseada na lista de participantes garantindo que a DataGridView é atualizada
             dgvEventos.DataSource = new BindingList<Participante>(EventoTec.ListaParticipantes);
 
         }
 
+        
         private void ckbEvento_CheckedChanged(object sender, EventArgs e)
         {
             // Ativa ou desativa os campos de edição com base na seleção da CheckBox
@@ -132,12 +152,15 @@ namespace EventoTecnologia
             dudNumMax.Enabled = ckbEvento.Checked;
         }
 
+        
         private void frmPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Delete)
             {
+                //permite eliminar um participante com a tecla delete
                 btnRemover.PerformClick();
             }
+            
         }
     }
 }

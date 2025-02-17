@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lbl_Nome = new Label();
             lbl_Idade = new Label();
             lbl_Email = new Label();
@@ -38,6 +39,8 @@
             txb_Idade = new TextBox();
             btn_ok = new Button();
             btn_cancelar = new Button();
+            errorProvider = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // lbl_Nome
@@ -61,7 +64,7 @@
             // lbl_Email
             // 
             lbl_Email.AutoSize = true;
-            lbl_Email.Location = new Point(40, 104);
+            lbl_Email.Location = new Point(214, 69);
             lbl_Email.Name = "lbl_Email";
             lbl_Email.Size = new Size(39, 15);
             lbl_Email.TabIndex = 2;
@@ -88,15 +91,17 @@
             // 
             txb_Nome.Location = new Point(92, 36);
             txb_Nome.Name = "txb_Nome";
-            txb_Nome.Size = new Size(100, 23);
+            txb_Nome.Size = new Size(277, 23);
             txb_Nome.TabIndex = 6;
+            txb_Nome.Validating += txb_Nome_Validating;
             // 
             // txb_Email
             // 
-            txb_Email.Location = new Point(92, 101);
+            txb_Email.Location = new Point(259, 65);
             txb_Email.Name = "txb_Email";
             txb_Email.Size = new Size(100, 23);
             txb_Email.TabIndex = 7;
+            txb_Email.Validating += txb_Email_Validating;
             // 
             // txb_Idade
             // 
@@ -104,10 +109,11 @@
             txb_Idade.Name = "txb_Idade";
             txb_Idade.Size = new Size(100, 23);
             txb_Idade.TabIndex = 8;
+            txb_Idade.Validating += txb_Idade_Validating;
             // 
             // btn_ok
             // 
-            btn_ok.Location = new Point(57, 160);
+            btn_ok.Location = new Point(138, 120);
             btn_ok.Name = "btn_ok";
             btn_ok.Size = new Size(75, 23);
             btn_ok.TabIndex = 9;
@@ -117,7 +123,7 @@
             // 
             // btn_cancelar
             // 
-            btn_cancelar.Location = new Point(138, 160);
+            btn_cancelar.Location = new Point(219, 120);
             btn_cancelar.Name = "btn_cancelar";
             btn_cancelar.Size = new Size(75, 23);
             btn_cancelar.TabIndex = 10;
@@ -125,11 +131,15 @@
             btn_cancelar.UseVisualStyleBackColor = true;
             btn_cancelar.Click += btn_cancelar_Click;
             // 
+            // errorProvider
+            // 
+            errorProvider.ContainerControl = this;
+            // 
             // Convidado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(265, 212);
+            ClientSize = new Size(436, 165);
             Controls.Add(btn_cancelar);
             Controls.Add(btn_ok);
             Controls.Add(txb_Idade);
@@ -142,6 +152,8 @@
             Controls.Add(lbl_Nome);
             Name = "Convidado";
             Text = "Convidado";
+            Load += Convidado_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -158,5 +170,6 @@
         private TextBox txb_Idade;
         private Button btn_ok;
         private Button btn_cancelar;
+        private ErrorProvider errorProvider;
     }
 }
