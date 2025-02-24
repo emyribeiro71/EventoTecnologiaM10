@@ -12,11 +12,7 @@ namespace EventoTecnologia
         public frmPrincipal()
         {
             InitializeComponent();
-            // Inicializa o EventoTec com o evento atual obtido de Dados
-            EventoTec = Dados.EventoAtual;
-
-            // Vincula o evento CheckedChanged da cknEvento ao método ckbEvento_CheckedChanged
-            ckbEvento.CheckedChanged += ckbEvento_CheckedChanged;
+            
         }
 
         // Evento de clique no botão Sair.
@@ -41,8 +37,6 @@ namespace EventoTecnologia
             dgvEventos.AllowUserToResizeColumns = false;
             dgvEventos.AllowUserToOrderColumns = true;
 
-            // Ler os dados do evento
-            GetDados(Dados.EventoAtual);
 
             // Formatar os dados na DataGridView
             dgvEventos.Columns["Nome"].Width = 220;
@@ -64,6 +58,13 @@ namespace EventoTecnologia
             txtNome.Enabled = false;
             dtpData.Enabled = false;
             dudNumMax.Enabled = false;
+
+            // Preencher o ComboBox com eventos
+            foreach (var evento in Dados.Eventos)
+            {
+                cmbEventos.Items.Add(evento.Nome);
+            }
+            cmbEventos.SelectedIndexChanged += cmbEventos_SelectedIndexChanged;
         }
 
         // Método que carrega os dados do evento na interface
@@ -75,9 +76,7 @@ namespace EventoTecnologia
             txtNome.Text = ev.Nome;
             dtpData.Value = ev.Data.Date;
             dudNumMax.Text = ev.CapacidadeMax.ToString();
-            // Desmarcar a CheckBox e desativar os campos
-            ckbEvento.Checked = false;
-            ckbEvento_CheckedChanged(null, null); // Chama o método para desativar campos
+            
 
             // exibição da listagem de participantes na DataGridView
             // Permite vincular a lista de participantes na DataGridView
@@ -92,7 +91,7 @@ namespace EventoTecnologia
             //dgvEventos.DataSource = new BindingList<Participante>(participantesOrdenados);
         }
 
-        
+
         private void btnInscrever_Click(object sender, EventArgs e)
         {
             // Abre o formulário de inscrição
@@ -108,7 +107,7 @@ namespace EventoTecnologia
             }
         }
 
-        
+
         private void btnRemover_Click(object sender, EventArgs e)
         {
             // Verifica se há uma linha selecionada na DataGridView
@@ -132,7 +131,7 @@ namespace EventoTecnologia
                 dgvEventos.Rows[dgvEventos.Rows.Count - 1].Selected = true;
 
         }
-        
+
         public void AtualizarDataGridView()
         {
             // Remove os dados da DataGridView
@@ -143,24 +142,27 @@ namespace EventoTecnologia
 
         }
 
-        
-        private void ckbEvento_CheckedChanged(object sender, EventArgs e)
-        {
-            // Ativa ou desativa os campos de edição com base na seleção da CheckBox
-            txtNome.Enabled = ckbEvento.Checked;
-            dtpData.Enabled = ckbEvento.Checked;
-            dudNumMax.Enabled = ckbEvento.Checked;
-        }
 
         
+
+
         private void frmPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete)
             {
                 //permite eliminar um participante com a tecla delete
                 btnRemover.PerformClick();
             }
-            
+
+        }
+
+        private void cmbEventos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = cmbEventos.SelectedIndex;
+            if (selectedIndex >= 0)
+            {
+                GetDados(Dados.Eventos[selectedIndex]);
+            }
         }
     }
 }

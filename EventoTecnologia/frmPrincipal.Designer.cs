@@ -39,7 +39,10 @@
             dudNumMax = new DomainUpDown();
             dtpData = new DateTimePicker();
             txtNome = new TextBox();
-            ckbEvento = new CheckBox();
+            cmbEventos = new ComboBox();
+            lblevento = new Label();
+            btn = new Button();
+            btnNewEvent = new Button();
             grpEventos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEventos).BeginInit();
             SuspendLayout();
@@ -88,9 +91,9 @@
             // 
             // btnSair
             // 
-            btnSair.Location = new Point(533, 365);
+            btnSair.Location = new Point(675, 322);
             btnSair.Name = "btnSair";
-            btnSair.Size = new Size(75, 23);
+            btnSair.Size = new Size(104, 23);
             btnSair.TabIndex = 2;
             btnSair.Text = "Sair";
             btnSair.UseVisualStyleBackColor = true;
@@ -152,22 +155,51 @@
             txtNome.Size = new Size(417, 23);
             txtNome.TabIndex = 8;
             // 
-            // ckbEvento
+            // cmbEventos
             // 
-            ckbEvento.AutoSize = true;
-            ckbEvento.Location = new Point(516, 29);
-            ckbEvento.Name = "ckbEvento";
-            ckbEvento.Size = new Size(95, 19);
-            ckbEvento.TabIndex = 9;
-            ckbEvento.Text = "Editar Evento";
-            ckbEvento.UseVisualStyleBackColor = true;
+            cmbEventos.FormattingEnabled = true;
+            cmbEventos.Location = new Point(623, 35);
+            cmbEventos.Name = "cmbEventos";
+            cmbEventos.Size = new Size(163, 23);
+            cmbEventos.TabIndex = 10;
+            cmbEventos.SelectedIndexChanged += cmbEventos_SelectedIndexChanged;
+            // 
+            // lblevento
+            // 
+            lblevento.AutoSize = true;
+            lblevento.Location = new Point(562, 38);
+            lblevento.Name = "lblevento";
+            lblevento.Size = new Size(49, 15);
+            lblevento.TabIndex = 11;
+            lblevento.Text = "Evento: ";
+            // 
+            // btn
+            // 
+            btn.Location = new Point(675, 136);
+            btn.Name = "btn";
+            btn.Size = new Size(104, 35);
+            btn.TabIndex = 12;
+            btn.Text = "Editar Evento";
+            btn.UseVisualStyleBackColor = true;
+            // 
+            // btnNewEvent
+            // 
+            btnNewEvent.Location = new Point(675, 97);
+            btnNewEvent.Name = "btnNewEvent";
+            btnNewEvent.Size = new Size(104, 33);
+            btnNewEvent.TabIndex = 13;
+            btnNewEvent.Text = "Novo Evento";
+            btnNewEvent.UseVisualStyleBackColor = true;
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(649, 401);
-            Controls.Add(ckbEvento);
+            ClientSize = new Size(824, 357);
+            Controls.Add(btnNewEvent);
+            Controls.Add(btn);
+            Controls.Add(lblevento);
+            Controls.Add(cmbEventos);
             Controls.Add(txtNome);
             Controls.Add(dtpData);
             Controls.Add(dudNumMax);
@@ -202,6 +234,9 @@
         private TextBox txtNome;
         private Button btnAddEvento;
         private Button btnInscrever;
-        private CheckBox ckbEvento;
+        private ComboBox cmbEventos;
+        private Label lblevento;
+        private Button btn;
+        private Button btnNewEvent;
     }
 }

@@ -9,20 +9,21 @@ namespace EventoTecnologia
 {
     static class Dados
     {
-        // Também era possivel criar os dados no evento Load() do formulário principal, no entanto,
-        // a criação da classe estática vai simplificar o acesso aos dados na fase 3
-        
-        public static Evento EventoAtual;
-       
+        public static List<Evento> Eventos { get; private set; }
+
         static Dados()
         {
-            // Criação de um evento pré-definido
-            EventoAtual = new Evento("IA - Desafios e Ética", new DateTime(2025, 1, 10), 24);
-            
-            // Inscrição de participantes de exemplo
-            EventoAtual.InscreverParticipante(new Participante("Carlos Almeida", 66, "carlos@gmail.com"));
-            EventoAtual.InscreverParticipante(new Participante("Andreia Quintal", 30, "andreia@gmail.com"));
-            EventoAtual.InscreverParticipante(new Participante("Teresa Marcelino", 35, "teresa@gmail.com"));
+            Eventos = new List<Evento>
+        {
+            new Evento("IA - Desafios e Ética", new DateTime(2025, 1, 10), 24),
+            new Evento("Tecnologia e Inovação", new DateTime(2025, 2, 15), 30)
+        };
+
+            // Inscrição de participantes de exemplo para o primeiro evento
+            Eventos[0].InscreverParticipante(new Participante("Carlos Almeida", 66, "carlos@gmail.com"));
+            Eventos[0].InscreverParticipante(new Participante("Andreia Quintal", 30, "andreia@gmail.com"));
+            Eventos[0].InscreverParticipante(new Participante("Teresa Marcelino", 35, "teresa@gmail.com"));
         }
     }
 }
+  

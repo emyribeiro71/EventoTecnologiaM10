@@ -34,9 +34,9 @@
             lbl_Email = new Label();
             label4 = new Label();
             label5 = new Label();
-            txb_Nome = new TextBox();
-            txb_Email = new TextBox();
-            txb_Idade = new TextBox();
+            txt_Nome = new TextBox();
+            txt_Email = new TextBox();
+            txt_Idade = new TextBox();
             btn_ok = new Button();
             btn_cancelar = new Button();
             errorProvider = new ErrorProvider(components);
@@ -87,29 +87,29 @@
             label5.Size = new Size(0, 15);
             label5.TabIndex = 4;
             // 
-            // txb_Nome
+            // txt_Nome
             // 
-            txb_Nome.Location = new Point(92, 36);
-            txb_Nome.Name = "txb_Nome";
-            txb_Nome.Size = new Size(277, 23);
-            txb_Nome.TabIndex = 6;
-            txb_Nome.Validating += txb_Nome_Validating;
+            txt_Nome.Location = new Point(92, 36);
+            txt_Nome.Name = "txt_Nome";
+            txt_Nome.Size = new Size(277, 23);
+            txt_Nome.TabIndex = 6;
+            txt_Nome.Validating += txb_Nome_Validating;
             // 
-            // txb_Email
+            // txt_Email
             // 
-            txb_Email.Location = new Point(259, 65);
-            txb_Email.Name = "txb_Email";
-            txb_Email.Size = new Size(100, 23);
-            txb_Email.TabIndex = 7;
-            txb_Email.Validating += txb_Email_Validating;
+            txt_Email.Location = new Point(259, 65);
+            txt_Email.Name = "txt_Email";
+            txt_Email.Size = new Size(100, 23);
+            txt_Email.TabIndex = 7;
+            txt_Email.Validating += txb_Email_Validating;
             // 
-            // txb_Idade
+            // txt_Idade
             // 
-            txb_Idade.Location = new Point(92, 66);
-            txb_Idade.Name = "txb_Idade";
-            txb_Idade.Size = new Size(100, 23);
-            txb_Idade.TabIndex = 8;
-            txb_Idade.Validating += txb_Idade_Validating;
+            txt_Idade.Location = new Point(92, 66);
+            txt_Idade.Name = "txt_Idade";
+            txt_Idade.Size = new Size(100, 23);
+            txt_Idade.TabIndex = 8;
+            txt_Idade.Validating += txb_Idade_Validating;
             // 
             // btn_ok
             // 
@@ -142,9 +142,9 @@
             ClientSize = new Size(436, 165);
             Controls.Add(btn_cancelar);
             Controls.Add(btn_ok);
-            Controls.Add(txb_Idade);
-            Controls.Add(txb_Email);
-            Controls.Add(txb_Nome);
+            Controls.Add(txt_Idade);
+            Controls.Add(txt_Email);
+            Controls.Add(txt_Nome);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(lbl_Email);
@@ -165,9 +165,9 @@
         private Label lbl_Email;
         private Label label4;
         private Label label5;
-        private TextBox txb_Nome;
-        private TextBox txb_Email;
-        private TextBox txb_Idade;
+        private TextBox txt_Nome;
+        private TextBox txt_Email;
+        private TextBox txt_Idade;
         private Button btn_ok;
         private Button btn_cancelar;
         private ErrorProvider errorProvider;

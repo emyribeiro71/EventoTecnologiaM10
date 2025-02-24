@@ -17,7 +17,7 @@ namespace EventoTecnologia
         public Convidado()
         {
             InitializeComponent();
-            EventoTec = Dados.EventoAtual;
+            
 
             // Define os botões de aceitação e cancelamento
             AcceptButton = btn_ok;
@@ -37,8 +37,8 @@ namespace EventoTecnologia
             }
 
 
-            int.TryParse(txb_Idade.Text, out int idade);
-            EventoTec.InscreverParticipante(new Participante(txb_Nome.Text, idade, txb_Email.Text)); // Inscreve o participante no evento
+            int.TryParse(txt_Idade.Text, out int idade);
+            EventoTec.InscreverParticipante(new Participante(txt_Nome.Text, idade, txt_Email.Text)); // Inscreve o participante no evento
 
             this.DialogResult = DialogResult.OK; // Retorna resultado OK
 
@@ -53,12 +53,12 @@ namespace EventoTecnologia
 
         private void txb_Nome_Validating(object sender, CancelEventArgs e)
         {
-            if (txb_Nome.Text == "")
+            if (txt_Nome.Text == "")
             {
                 // O email contém erros 
                 e.Cancel = true; // Cancelar a operação. Não dar autorização para fechar a janela
-                txb_Nome.SelectAll();
-                errorProvider.SetError(txb_Nome, "Nome inválido...");
+                txt_Nome.SelectAll();
+                errorProvider.SetError(txt_Nome, "Nome inválido...");
 
             }
             else
@@ -66,7 +66,7 @@ namespace EventoTecnologia
                 // O email está correto
                 e.Cancel = false; // Tudo OK, dar autorização para a janela fechar
                 // Limpar a mensagem de erro
-                errorProvider.SetError(txb_Nome, string.Empty);
+                errorProvider.SetError(txt_Nome, string.Empty);
             }
         }
 
@@ -101,38 +101,38 @@ namespace EventoTecnologia
 
         private void txb_Idade_Validating(object sender, CancelEventArgs e)
         {
-            int.TryParse(txb_Idade.Text, out int idade);
+            int.TryParse(txt_Idade.Text, out int idade);
             if (Participante.IsValidIdade(idade))
             {
                 // A idade está correta
                 e.Cancel = false; // Tudo OK, dar autorização para a janela fechar
                                   // Limpar a mensagem de erro
-                errorProvider.SetError(txb_Idade, string.Empty);
+                errorProvider.SetError(txt_Idade, string.Empty);
             }
-            else if (txb_Idade.Text == "")
+            else if (txt_Idade.Text == "")
             {
                 // A idade contém erros 
                 e.Cancel = true; // Cancelar a operação. Não dar autorização para fechar a janela
-                txb_Idade.SelectAll();
-                errorProvider.SetError(txb_Idade, "Idade inválida...");
+                txt_Idade.SelectAll();
+                errorProvider.SetError(txt_Idade, "Idade inválida...");
             }
         }
 
         private void txb_Email_Validating(object sender, CancelEventArgs e)
         {
-            if (Participante.IsValidEmail(txb_Email.Text))
+            if (Participante.IsValidEmail(txt_Email.Text))
             {
                 // o email está correta
                 e.Cancel = false; // Tudo OK, dar autorização para a janela fechar
                 // Limpar a mensagem de erro
-                errorProvider.SetError(txb_Email, string.Empty);
+                errorProvider.SetError(txt_Email, string.Empty);
             }
-            else if (txb_Email.Text == "")
+            else if (txt_Email.Text == "")
             {
                 // O email contém erros 
                 e.Cancel = true; // Cancelar a operação. Não dar autorização para fechar a janela
-                txb_Email.SelectAll();
-                errorProvider.SetError(txb_Email, "Email inválida...");
+                txt_Email.SelectAll();
+                errorProvider.SetError(txt_Email, "Email inválida...");
             }
         }
     }
