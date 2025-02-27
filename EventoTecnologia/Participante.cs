@@ -2,6 +2,7 @@
 
 namespace EventoTecnologia
 {
+    [Serializable]
     public class Participante
     {
         // Propriedade para o nome do participante

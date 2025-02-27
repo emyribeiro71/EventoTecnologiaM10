@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            textBox1 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            domainUpDown1 = new DomainUpDown();
+            txtNome = new TextBox();
+            dtpData = new DateTimePicker();
             btnSalvar = new Button();
             btnCancelar = new Button();
+            nudCapacidade = new NumericUpDown();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)nudCapacidade).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -65,27 +69,21 @@
             label3.TabIndex = 2;
             label3.Text = "Nº máximo de participantes:";
             // 
-            // textBox1
+            // txtNome
             // 
-            textBox1.Location = new Point(133, 20);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(278, 23);
-            textBox1.TabIndex = 3;
+            txtNome.Location = new Point(133, 20);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(278, 23);
+            txtNome.TabIndex = 3;
+            txtNome.Validating += txtNome_Validating;
             // 
-            // dateTimePicker1
+            // dtpData
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(128, 76);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(105, 23);
-            dateTimePicker1.TabIndex = 4;
-            // 
-            // domainUpDown1
-            // 
-            domainUpDown1.Location = new Point(417, 76);
-            domainUpDown1.Name = "domainUpDown1";
-            domainUpDown1.Size = new Size(73, 23);
-            domainUpDown1.TabIndex = 5;
+            dtpData.Format = DateTimePickerFormat.Short;
+            dtpData.Location = new Point(128, 76);
+            dtpData.Name = "dtpData";
+            dtpData.Size = new Size(105, 23);
+            dtpData.TabIndex = 4;
             // 
             // btnSalvar
             // 
@@ -105,22 +103,37 @@
             btnCancelar.TabIndex = 7;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // nudCapacidade
+            // 
+            nudCapacidade.Location = new Point(417, 76);
+            nudCapacidade.Name = "nudCapacidade";
+            nudCapacidade.Size = new Size(68, 23);
+            nudCapacidade.TabIndex = 8;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // Eventoss
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(526, 190);
+            Controls.Add(nudCapacidade);
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
-            Controls.Add(domainUpDown1);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox1);
+            Controls.Add(dtpData);
+            Controls.Add(txtNome);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Eventoss";
             Text = "Evento";
+            Load += Eventoss_Load;
+            ((System.ComponentModel.ISupportInitialize)nudCapacidade).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -130,10 +143,11 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
-        private DateTimePicker dateTimePicker1;
-        private DomainUpDown domainUpDown1;
+        private TextBox txtNome;
+        private DateTimePicker dtpData;
         private Button btnSalvar;
         private Button btnCancelar;
+        private NumericUpDown nudCapacidade;
+        private ErrorProvider errorProvider1;
     }
 }

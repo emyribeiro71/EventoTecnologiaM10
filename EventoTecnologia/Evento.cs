@@ -8,6 +8,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace EventoTecnologia
 {
+    [Serializable]
     public class Evento
     {
         //constante que determina a capacidade mínima de participantes

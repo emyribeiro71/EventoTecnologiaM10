@@ -43,6 +43,7 @@
             lblevento = new Label();
             btn = new Button();
             btnNewEvent = new Button();
+            btnEditarEvent = new Button();
             grpEventos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEventos).BeginInit();
             SuspendLayout();
@@ -54,7 +55,7 @@
             grpEventos.Controls.Add(dgvEventos);
             grpEventos.Location = new Point(22, 97);
             grpEventos.Name = "grpEventos";
-            grpEventos.Size = new Size(610, 248);
+            grpEventos.Size = new Size(601, 248);
             grpEventos.TabIndex = 1;
             grpEventos.TabStop = false;
             grpEventos.Text = "Participantes";
@@ -158,7 +159,7 @@
             // cmbEventos
             // 
             cmbEventos.FormattingEnabled = true;
-            cmbEventos.Location = new Point(623, 35);
+            cmbEventos.Location = new Point(649, 35);
             cmbEventos.Name = "cmbEventos";
             cmbEventos.Size = new Size(163, 23);
             cmbEventos.TabIndex = 10;
@@ -167,7 +168,7 @@
             // lblevento
             // 
             lblevento.AutoSize = true;
-            lblevento.Location = new Point(562, 38);
+            lblevento.Location = new Point(594, 38);
             lblevento.Name = "lblevento";
             lblevento.Size = new Size(49, 15);
             lblevento.TabIndex = 11;
@@ -175,27 +176,37 @@
             // 
             // btn
             // 
-            btn.Location = new Point(675, 136);
+            btn.Location = new Point(0, 0);
             btn.Name = "btn";
-            btn.Size = new Size(104, 35);
-            btn.TabIndex = 12;
-            btn.Text = "Editar Evento";
-            btn.UseVisualStyleBackColor = true;
+            btn.Size = new Size(75, 23);
+            btn.TabIndex = 14;
             // 
             // btnNewEvent
             // 
-            btnNewEvent.Location = new Point(675, 97);
+            btnNewEvent.Location = new Point(675, 75);
             btnNewEvent.Name = "btnNewEvent";
             btnNewEvent.Size = new Size(104, 33);
             btnNewEvent.TabIndex = 13;
             btnNewEvent.Text = "Novo Evento";
             btnNewEvent.UseVisualStyleBackColor = true;
+            btnNewEvent.Click += btnNewEvent_Click;
+            // 
+            // btnEditarEvent
+            // 
+            btnEditarEvent.Location = new Point(675, 114);
+            btnEditarEvent.Name = "btnEditarEvent";
+            btnEditarEvent.Size = new Size(104, 33);
+            btnEditarEvent.TabIndex = 15;
+            btnEditarEvent.Text = "Editar Evento";
+            btnEditarEvent.UseVisualStyleBackColor = true;
+            btnEditarEvent.Click += btnEditarEvent_Click;
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(824, 357);
+            Controls.Add(btnEditarEvent);
             Controls.Add(btnNewEvent);
             Controls.Add(btn);
             Controls.Add(lblevento);
@@ -238,5 +249,6 @@
         private Label lblevento;
         private Button btn;
         private Button btnNewEvent;
+        private Button btnEditarEvent;
     }
 }

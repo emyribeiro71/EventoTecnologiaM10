@@ -12,7 +12,7 @@ namespace EventoTecnologia
         public frmPrincipal()
         {
             InitializeComponent();
-            
+
         }
 
         // Evento de clique no botão Sair.
@@ -76,7 +76,7 @@ namespace EventoTecnologia
             txtNome.Text = ev.Nome;
             dtpData.Value = ev.Data.Date;
             dudNumMax.Text = ev.CapacidadeMax.ToString();
-            
+
 
             // exibição da listagem de participantes na DataGridView
             // Permite vincular a lista de participantes na DataGridView
@@ -143,7 +143,7 @@ namespace EventoTecnologia
         }
 
 
-        
+
 
 
         private void frmPrincipal_KeyDown(object sender, KeyEventArgs e)
@@ -163,6 +163,45 @@ namespace EventoTecnologia
             {
                 GetDados(Dados.Eventos[selectedIndex]);
             }
+        }
+
+        private void btnNewEvent_Click(object sender, EventArgs e)
+        {
+            Eventoss formEvento = new Eventoss();
+            if (formEvento.ShowDialog() == DialogResult.OK)
+            {
+                // Atualizar a lista de eventos no ComboBox ou DataGridView
+                AtualizarEventos();
+            }
+        }
+
+        private void btnEditarEvent_Click(object sender, EventArgs e)
+        {
+            if (cmbEventos.SelectedIndex >= 0)
+            {
+                Evento eventoSelecionado = Dados.Eventos[cmbEventos.SelectedIndex];
+                Eventoss formEvento = new Eventoss(eventoSelecionado);
+                if (formEvento.ShowDialog() == DialogResult.OK)
+                {
+                    // Atualizar a lista de eventos no ComboBox ou DataGridView
+                    AtualizarEventos();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione um evento para editar.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void AtualizarEventos()
+        {
+            cmbEventos.Items.Clear();
+            foreach (var evento in Dados.Eventos)
+            {
+                cmbEventos.Items.Add(evento.Nome);
+            }
+            if (cmbEventos.Items.Count > 0)
+                cmbEventos.SelectedIndex = 0; // Seleciona o primeiro evento por padrão
         }
     }
 }
