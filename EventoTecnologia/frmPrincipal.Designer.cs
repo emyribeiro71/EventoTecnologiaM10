@@ -31,7 +31,7 @@
             grpEventos = new GroupBox();
             btnInscrever = new Button();
             btnRemover = new Button();
-            dgvEventos = new DataGridView();
+            dgvParticipantes = new DataGridView();
             btnSair = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -45,14 +45,14 @@
             btnNewEvent = new Button();
             btnEditarEvent = new Button();
             grpEventos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvEventos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvParticipantes).BeginInit();
             SuspendLayout();
             // 
             // grpEventos
             // 
             grpEventos.Controls.Add(btnInscrever);
             grpEventos.Controls.Add(btnRemover);
-            grpEventos.Controls.Add(dgvEventos);
+            grpEventos.Controls.Add(dgvParticipantes);
             grpEventos.Location = new Point(22, 97);
             grpEventos.Name = "grpEventos";
             grpEventos.Size = new Size(601, 248);
@@ -80,15 +80,15 @@
             btnRemover.UseVisualStyleBackColor = true;
             btnRemover.Click += btnRemover_Click;
             // 
-            // dgvEventos
+            // dgvParticipantes
             // 
-            dgvEventos.AllowUserToOrderColumns = true;
-            dgvEventos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEventos.Location = new Point(22, 29);
-            dgvEventos.Name = "dgvEventos";
-            dgvEventos.RowHeadersWidth = 82;
-            dgvEventos.Size = new Size(459, 202);
-            dgvEventos.TabIndex = 1;
+            dgvParticipantes.AllowUserToOrderColumns = true;
+            dgvParticipantes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvParticipantes.Location = new Point(22, 29);
+            dgvParticipantes.Name = "dgvParticipantes";
+            dgvParticipantes.RowHeadersWidth = 82;
+            dgvParticipantes.Size = new Size(459, 202);
+            dgvParticipantes.TabIndex = 1;
             // 
             // btnSair
             // 
@@ -163,6 +163,7 @@
             cmbEventos.Name = "cmbEventos";
             cmbEventos.Size = new Size(163, 23);
             cmbEventos.TabIndex = 10;
+            cmbEventos.Text = "[Escolha um evento]";
             cmbEventos.SelectedIndexChanged += cmbEventos_SelectedIndexChanged;
             // 
             // lblevento
@@ -221,10 +222,11 @@
             Controls.Add(grpEventos);
             Name = "frmPrincipal";
             Text = "Gestão de Inscrições para Evento de Tecnologia";
+            FormClosing += frmPrincipal_FormClosing;
             Load += frmPrincipal_Load;
             KeyDown += frmPrincipal_KeyDown;
             grpEventos.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvEventos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvParticipantes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -232,7 +234,7 @@
         #endregion
 
         private GroupBox grpEventos;
-        private DataGridView dgvEventos;
+        private DataGridView dgvParticipantes;
         private Button btnSair;
         private Button btnListParticipantes;
         private Button btnAddParticipante;

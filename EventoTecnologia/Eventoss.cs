@@ -50,6 +50,8 @@ namespace EventoTecnologia
                 EventoAtual.CapacidadeMax = (int)nudCapacidade.Value;
             }
 
+            Dados.SalvarEventos(); // Salva os eventos no arquivo binário
+
             this.DialogResult = DialogResult.OK; // Indica que a operação foi bem-sucedida
             this.Close(); // Fecha o formulário
         }

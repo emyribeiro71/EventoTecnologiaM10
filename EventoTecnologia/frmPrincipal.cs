@@ -7,11 +7,14 @@ namespace EventoTecnologia
     {
         // Propriedade que armazena o evento atual
         public Evento EventoTec { get; private set; }
+        public List<Evento> Eventos { get; private set; }
 
         // Construtor da classe frmPrincipal. Inicializa os componentes
         public frmPrincipal()
         {
             InitializeComponent();
+            Eventos = new List<Evento>();
+            this.FormClosing += new FormClosingEventHandler(frmPrincipal_FormClosing);
 
         }
 
@@ -24,30 +27,31 @@ namespace EventoTecnologia
 
         // Evento de carregamento do formulário. Inicializa configurações e exibe os dados do evento.
 
+
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             // Alterar algumas propriedades da datagridView
-            dgvEventos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvEventos.MultiSelect = false;
-            dgvEventos.RowHeadersVisible = false;
-            dgvEventos.ReadOnly = true;
-            dgvEventos.AllowUserToAddRows = false;
-            dgvEventos.AllowUserToDeleteRows = false;
-            dgvEventos.AllowUserToResizeRows = false;
-            dgvEventos.AllowUserToResizeColumns = false;
-            dgvEventos.AllowUserToOrderColumns = true;
+            dgvParticipantes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvParticipantes.MultiSelect = false;
+            dgvParticipantes.RowHeadersVisible = false;
+            dgvParticipantes.ReadOnly = true;
+            dgvParticipantes.AllowUserToAddRows = false;
+            dgvParticipantes.AllowUserToDeleteRows = false;
+            dgvParticipantes.AllowUserToResizeRows = false;
+            dgvParticipantes.AllowUserToResizeColumns = false;
+            dgvParticipantes.AllowUserToOrderColumns = true;
 
 
             // Formatar os dados na DataGridView
-            dgvEventos.Columns["Nome"].Width = 220;
+            dgvParticipantes.Columns["Nome"].Width = 220;
 
             // Alterar a cor de fundo da coluna
-            dgvEventos.Columns["Nome"].DefaultCellStyle.BackColor = Color.LightYellow;
+            dgvParticipantes.Columns["Nome"].DefaultCellStyle.BackColor = Color.LightYellow;
 
             //dgvEventos.Columns["Nome"].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold);
-            dgvEventos.Columns["Idade"].Width = 56;
-            dgvEventos.Columns["Email"].HeaderText = "E-mail";
-            dgvEventos.Columns["Email"].Width = 180;
+            dgvParticipantes.Columns["Idade"].Width = 56;
+            dgvParticipantes.Columns["Email"].HeaderText = "E-mail";
+            dgvParticipantes.Columns["Email"].Width = 180;
 
 
             // Para que o formulário receba a tecla pressionada
@@ -81,7 +85,7 @@ namespace EventoTecnologia
             // exibição da listagem de participantes na DataGridView
             // Permite vincular a lista de participantes na DataGridView
             // Outra alternativa era criar diretamente a BindingList na classe Evento
-            dgvEventos.DataSource = new BindingList<Participante>(ev.ListaParticipantes);
+            dgvParticipantes.DataSource = new BindingList<Participante>(ev.ListaParticipantes);
 
 
             // Ordenar a lista de participantes por ordem alfabética
@@ -99,6 +103,7 @@ namespace EventoTecnologia
             if (form.ShowDialog() == DialogResult.OK) // Verifica se a inscrição foi bem-sucedida
             {
                 GetDados(EventoTec); // Atualiza a lista de participantes
+                Dados.SalvarEventos(); // Salva os eventos após a inscrição
                 MessageBox.Show("Inscrição realizada com sucesso!", "Inscrição", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -111,34 +116,35 @@ namespace EventoTecnologia
         private void btnRemover_Click(object sender, EventArgs e)
         {
             // Verifica se há uma linha selecionada na DataGridView
-            if (dgvEventos.SelectedRows.Count > 0)
+            if (dgvParticipantes.SelectedRows.Count > 0)
             {
-                Participante p = (Participante)dgvEventos.SelectedRows[0].DataBoundItem;
+                Participante p = (Participante)dgvParticipantes.SelectedRows[0].DataBoundItem;
                 string msg = "Remover o participante " + p.Nome + "?";
                 DialogResult res = MessageBox.Show(msg, "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question);//verifica se quer mesmo eliminar o participante
                 if (res == DialogResult.Yes)
                     EventoTec.ListaParticipantes.Remove(p); // Remove o participante da lista
                 GetDados(EventoTec); // Atualiza a DataGridView após remoção
 
+                Dados.SalvarEventos(); // Salva os eventos no arquivo binário
             }
-            if (dgvEventos.SelectedRows.Count == 0)
+            if (dgvParticipantes.SelectedRows.Count == 0)
             {
                 // Exibe uma mensagem caso nenhum participante tenha sido selecionado
                 MessageBox.Show("Selecione um participante para remover...", "Remover", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             // Se não houver linha selecionada, seleciona a última linha automaticamente
-            if (dgvEventos.Rows.Count > 0 && dgvEventos.SelectedRows.Count == 0)
-                dgvEventos.Rows[dgvEventos.Rows.Count - 1].Selected = true;
+            if (dgvParticipantes.Rows.Count > 0 && dgvParticipantes.SelectedRows.Count == 0)
+                dgvParticipantes.Rows[dgvParticipantes.Rows.Count - 1].Selected = true;
 
         }
 
         public void AtualizarDataGridView()
         {
             // Remove os dados da DataGridView
-            dgvEventos.DataSource = null;
+            dgvParticipantes.DataSource = null;
 
             // A fonte de dados muda para outra BindingList baseada na lista de participantes garantindo que a DataGridView é atualizada
-            dgvEventos.DataSource = new BindingList<Participante>(EventoTec.ListaParticipantes);
+            dgvParticipantes.DataSource = new BindingList<Participante>(EventoTec.ListaParticipantes);
 
         }
 
@@ -202,6 +208,11 @@ namespace EventoTecnologia
             }
             if (cmbEventos.Items.Count > 0)
                 cmbEventos.SelectedIndex = 0; // Seleciona o primeiro evento por padrão
+        }
+
+        private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dados.SalvarEventos(); // Salva os eventos ao fechar o formulário
         }
     }
 }
